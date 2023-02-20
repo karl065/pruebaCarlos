@@ -15,10 +15,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import carlos.castellanos.pruebacarlos.databinding.ActivityMainBinding
 import carlos.castellanos.pruebacarlos.db.DBHelper
@@ -27,16 +25,14 @@ import com.mapbox.android.gestures.MoveGestureDetector
 import com.mapbox.geojson.Point
 import com.mapbox.maps.*
 import com.mapbox.maps.extension.style.expressions.dsl.generated.interpolate
-import com.mapbox.maps.extension.style.layers.addLayer
-import com.mapbox.maps.extension.style.layers.generated.symbolLayer
-import com.mapbox.maps.extension.style.sources.addSource
-import com.mapbox.maps.extension.style.sources.generated.GeoJsonSource
 import com.mapbox.maps.plugin.LocationPuck2D
 import com.mapbox.maps.plugin.annotation.annotations
 import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
 import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import com.mapbox.maps.plugin.gestures.OnMapClickListener
+
 import com.mapbox.maps.plugin.gestures.OnMoveListener
+import com.mapbox.maps.plugin.gestures.addOnMapClickListener
 import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
@@ -44,7 +40,7 @@ import com.mapbox.maps.plugin.locationcomponent.location
 import java.lang.ref.WeakReference
 
 
-@Suppress("DEPRECATION")
+
 class MainActivity : AppCompatActivity(), OnMapClickListener {
 
     private lateinit var dbHelper: DBHelper
@@ -77,16 +73,18 @@ class MainActivity : AppCompatActivity(), OnMapClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        toolbar("Decimetrix")
-        init()
         locationPermissionHelper = LocationPermissionHelper(WeakReference(this))
         locationPermissionHelper.checkPermissions {
+            toolbar("Decimetrix")
+            init()
             onMapReady()
         }
     }
 
     private fun onMapReady() {
-/*
+        binding.mapView.getMapboxMap().addOnMapClickListener(this)
+
+        /*
         val source = GeoJsonSource.Builder("Source_id")
             .url("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_populated_places_simple.geojson")
             .build()
@@ -151,6 +149,37 @@ class MainActivity : AppCompatActivity(), OnMapClickListener {
             }
         }
     }
+    @Suppress("DEPRECATION")
+    override fun onMapClick(point: Point): Boolean {
+        bitmapFromDrawableRes(
+            this,
+            R.drawable.red_marker
+        )?.let {
+            val annotationApi = binding.mapView.annotations
+            annotationApi.cleanup()
+            val pointAnnotationManager = annotationApi.createPointAnnotationManager()
+            val pointAnnotationOptions: PointAnnotationOptions = PointAnnotationOptions()
+
+                .withPoint(Point.fromLngLat(point.longitude(), point.latitude()))
+
+                .withIconImage(it)
+
+            pointAnnotationManager.create(pointAnnotationOptions)
+            Log.d("MapBox", "Point:$point")
+
+            binding.navigationButton.visibility = View.VISIBLE
+            binding.navigationButton.setBackgroundColor(resources.getColor(R.color.mapboxBlue))
+            binding.favoriteEmpty.visibility = View.VISIBLE
+            binding.eliminateMarker.visibility = View.VISIBLE
+            binding.eliminateMarker.setOnClickListener {
+                annotationApi.cleanup()
+                binding.navigationButton.visibility = View.GONE
+                binding.favoriteEmpty.visibility = View.GONE
+                binding.eliminateMarker.visibility = View.GONE
+            }
+        }
+        return true
+    }
 
 
     private fun setupGesturesListener() {
@@ -193,40 +222,10 @@ class MainActivity : AppCompatActivity(), OnMapClickListener {
         )
     }
 
-    override fun onMapClick(point: Point): Boolean {
-
-        bitmapFromDrawableRes(
-            this@MainActivity,
-            R.drawable.red_marker
-        )?.let {
-            val annotationApi = binding.mapView.annotations
-            annotationApi.cleanup()
-            val pointAnnotationManager = annotationApi.createPointAnnotationManager()
-            val pointAnnotationOptions: PointAnnotationOptions = PointAnnotationOptions()
-
-                .withPoint(Point.fromLngLat(point.longitude(), point.latitude()))
-
-                .withIconImage(it)
-
-            pointAnnotationManager.create(pointAnnotationOptions)
-            Log.d("MapBox", "Point:$point")
-
-            binding.navigationButton.visibility = View.VISIBLE
-            binding.navigationButton.setBackgroundColor(resources.getColor(R.color.mapboxBlue))
-            binding.favoriteEmpty.visibility = View.VISIBLE
-            binding.eliminateMarker.visibility = View.VISIBLE
-            binding.eliminateMarker.setOnClickListener {
-                annotationApi.cleanup()
-                binding.navigationButton.visibility = View.GONE
-                binding.favoriteEmpty.visibility = View.GONE
-                binding.eliminateMarker.visibility = View.GONE
-            }
-        }
-        return true
-    }
 
 
-    private fun bitmapFromDrawableRes(context: Context, @DrawableRes resourceId: Int) =
+
+    private fun bitmapFromDrawableRes(context: Context, resourceId: Int) =
         convertDrawableToBitmap(AppCompatResources.getDrawable(context, resourceId))
 
     private fun convertDrawableToBitmap(sourceDrawable: Drawable?): Bitmap? {
