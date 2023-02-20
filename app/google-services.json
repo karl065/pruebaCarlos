@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "269320315186",
+    "project_id": "pruebatecnica-eb981",
+    "storage_bucket": "pruebatecnica-eb981.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269320315186:android:e9946c23df62905909b72b",
+        "android_client_info": {
+          "package_name": "carlos.castellanos.pruebacarlos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269320315186-hd6ti4fhi4bqaikgc86aslkg7129jf0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrlKcyyt7icCWAVzxXwDPTjOfbfFZTKH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269320315186-hd6ti4fhi4bqaikgc86aslkg7129jf0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269320315186:android:f96ffd450c232a6b09b72b",
+        "android_client_info": {
+          "package_name": "carlos.castellanos.pruebatecnica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269320315186-hd6ti4fhi4bqaikgc86aslkg7129jf0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrlKcyyt7icCWAVzxXwDPTjOfbfFZTKH8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269320315186-hd6ti4fhi4bqaikgc86aslkg7129jf0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

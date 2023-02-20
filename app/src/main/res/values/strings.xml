@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">pruebaCarlos</string>
+    <string name="menu_home">home</string>
+    <string name="menu_gallery">galeria</string>
+    <string name="menu_slideshow">menudeslisable</string>
+    <string name="nav_header_desc">Navigation Header</string>
+
+    <string name="mapbox_access_token">sk.eyJ1Ijoia2FybG9zMDY1IiwiYSI6ImNsZTdzNHNhaDA4aWczcHIxMmdncjkzejIifQ.yNjsyy2xt7ceZobvyR2rVg</string>
+    <string name="navigation">Navigation</string>
+    <string name="buttonLocation">buttonLocation</string>
+    <string name="buttonFavoriteEmpty">buttonFavoriteEmpty</string>
+    <string name="buttonFavoriteFull">buttonFavoriteFull</string>
+    <string name="buttonEliminateMarker">buttonEliminateMarker</string>
+    <string name="buttonImageStyle">buttonImageStyle</string>
+
+    <string name="imgReg">imgReg</string>
+    <string name="insEmailReg">Ingrese su Email</string>
+    <string name="insNombreReg">Ingrese su Nombre</string>
+    <string name="insContrasenaReg">Inrgese una contraseña</string>
+    <string name="insConfirmarContra">Repita la contraseña</string>
+    <string name="btnRegistrarReg">Aceptar</string>
+    <string name="imglogin">imgLogin</string>
+    <string name="insEmail">Ingrese su Email</string>
+    <string name="insContrasena">Ingrese su Contraseña</string>
+    <string name="btnIngresar">Login</string>
+    <string name="btnLogout">Cerrar Sesion</string>
+    <string name="btnRegistrar">Registrar</string>
+</resources>

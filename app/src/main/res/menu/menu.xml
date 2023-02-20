@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuLogin"
+            android:icon="@drawable/ic_login"
+            android:title="@string/btnIngresar" />
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/btnLogout"
+            android:visible="false"/>
+        <item
+            android:id="@+id/menuRegistro"
+            android:icon="@drawable/ic_personadd"
+            android:title="@string/btnRegistrar" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_slideshow" />
+    </group>
+
+</menu>

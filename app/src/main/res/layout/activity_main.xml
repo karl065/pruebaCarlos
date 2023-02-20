@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:contentDescription="@string/app_name"
+    android:fitsSystemWindows="true"
+    tools:ignore="PrivateResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/design_default_color_primary"
+            android:theme="@style/ThemeOverlay.AppCompat.Light">
+
+            <ImageButton
+                android:id="@+id/favoriteEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:contentDescription="@string/buttonFavoriteEmpty"
+                android:visibility="gone"
+                android:minHeight="48dp"
+                mapbox:srcCompat="@drawable/ic_favorite_empty"
+                tools:ignore="RtlHardcoded,TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:id="@+id/favoriteFull"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:contentDescription="@string/buttonFavoriteFull"
+                android:visibility="gone"
+                android:minHeight="48dp"
+                mapbox:srcCompat="@drawable/ic_favorite_full"
+                tools:ignore="RtlHardcoded,RtlHardcoded" />
+
+            <ImageButton
+                android:id="@+id/eliminateMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/buttonEliminateMarker"
+                android:layout_gravity="right"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                mapbox:srcCompat="@drawable/ic_location_eliminate"
+                tools:ignore="RtlHardcoded" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            mapbox:mapbox_locationComponentEnabled="true"
+            mapbox:mapbox_locationComponentPuckBearingSource="heading"
+            tools:context=".examples.LocationComponentActivity">
+
+            <ImageButton
+                android:id="@+id/mapStyleButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:contentDescription="@string/buttonImageStyle"
+                android:scaleType="centerCrop"
+                android:background="@drawable/border"
+                android:src="@drawable/map_satelite"
+                tools:ignore="ImageContrastCheck" />
+
+            <ImageButton
+                android:id="@+id/buttonLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#787373"
+                android:contentDescription="@string/buttonLocation"
+                android:minHeight="48dp"
+                mapbox:srcCompat="@drawable/ic_my_location"
+                tools:ignore="RtlHardcoded" />
+
+            <Button
+                android:id="@+id/navigationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="24dp"
+                android:background="@color/mapboxGrayLight"
+                android:text="@string/navigation"
+                android:textColor="#455A64"
+                android:visibility="gone" />
+
+
+        </com.mapbox.maps.MapView>
+
+    </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/menu"
+        tools:ignore="VisualLintBounds">
+
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
